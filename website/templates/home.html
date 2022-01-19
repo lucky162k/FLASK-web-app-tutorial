@@ -1,0 +1,31 @@
+<!-- Import and use the base.html template -->
+{% extends "base.html" %}
+
+<!-- Update the block title to the page name -->
+{% block title %}Home{% endblock %}
+
+<!-- This is the page content -->
+{% block content %}
+<h1 align="center">Notes</h1>
+<br/>
+<h2 align="center">Enter a New Note</h2>
+<form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <div align="center">
+        <br/>
+        <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+</form>
+<br/>
+<h2 align="center">Notes History</h2>
+<ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item">
+        {{ note.data }}
+        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
